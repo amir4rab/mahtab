@@ -1,12 +1,12 @@
-// tailwind.config.js
 import colors from "tailwindcss/colors";
+import typography from "@tailwindcss/typography";
 import containerQueries from "@tailwindcss/container-queries";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    "node_modules/@konj-org/preact-ui/**/*.tsx",
-    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
+    "node_modules/@konj-org/preact-ui/**/*.{js,tsx}",
+    "./src/**/*.{html,astro,ts,tsx,mdx}",
   ],
   theme: {
     transitionTimingFunction: {
@@ -57,7 +57,7 @@ const config = {
       },
       animation: {
         "fade-in": "opacity-keyframes .5s ease-in-out forwards",
-        loading: "loading-keyframes infinite",
+        loading: "loading-keyframes steps(4) infinite",
       },
       colors: {
         primary: colors.rose,
@@ -78,7 +78,7 @@ const config = {
       },
     },
   },
-  plugins: [containerQueries],
+  plugins: [typography, containerQueries],
 };
 
 export default config;
