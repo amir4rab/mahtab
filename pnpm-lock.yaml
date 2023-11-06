@@ -14,6 +14,9 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^5.0.2
     version: 5.0.2(astro@3.4.3)(tailwindcss@3.3.5)
+  '@konj-org/preact-ui':
+    specifier: ^0.0.1
+    version: 0.0.1(@tailwindcss/container-queries@0.1.1)(class-variance-authority@0.7.0)(preact@10.18.2)(tailwind-merge@1.14.0)(tailwindcss@3.3.5)
   astro:
     specifier: ^3.4.3
     version: 3.4.3(typescript@5.2.2)
@@ -860,6 +863,22 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
+  /@konj-org/preact-ui@0.0.1(@tailwindcss/container-queries@0.1.1)(class-variance-authority@0.7.0)(preact@10.18.2)(tailwind-merge@1.14.0)(tailwindcss@3.3.5):
+    resolution: {integrity: sha512-/LzU6WXepqFpDvBS3RrdY8EWFB4H/4FNWPcL1h8Xn3DxqJcT9PTdYcv2MAeYsACAYpOPSUfEdcekuaCg5YKkrg==}
+    peerDependencies:
+      '@tailwindcss/container-queries': ^0.1.1
+      class-variance-authority: ^0.7.0
+      preact: ^10.18.1
+      tailwind-merge: ^1.14.0
+      tailwindcss: ^3.0.24
+    dependencies:
+      '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.3.5)
+      class-variance-authority: 0.7.0
+      preact: 10.18.2
+      tailwind-merge: 1.14.0
+      tailwindcss: 3.3.5
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -954,6 +973,14 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: false
+
+  /@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.5):
+    resolution: {integrity: sha512-p18dswChx6WnTSaJCSGx6lTmrGzNNvm2FtXmiO6AuA1V4U5REyoqwmT6kgAsIMdjo07QdAfYXHJ4hnMtfHzWgA==}
+    peerDependencies:
+      tailwindcss: '>=3.2.0'
+    dependencies:
+      tailwindcss: 3.3.5
     dev: false
 
   /@types/babel__core@7.20.3:
@@ -1451,6 +1478,12 @@ packages:
   /ci-info@3.9.0:
     resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
     engines: {node: '>=8'}
+    dev: false
+
+  /class-variance-authority@0.7.0:
+    resolution: {integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==}
+    dependencies:
+      clsx: 2.0.0
     dev: false
 
   /cli-boxes@3.0.0:
@@ -3799,6 +3832,10 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: false
+
+  /tailwind-merge@1.14.0:
+    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
   /tailwindcss@3.3.5:
