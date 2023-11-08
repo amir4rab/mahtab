@@ -1,5 +1,6 @@
 ---
 import CommonHeaders from '@/components/astro/common-headers.astro';
+import Navbar from '@/components/astro/navbar.astro';
 ---
 <html lang="en" dir="ltr">
   <CommonHeaders />
@@ -15,7 +16,7 @@ import CommonHeaders from '@/components/astro/common-headers.astro';
     }
 
     body {
-      @apply bg-neutral-50 dark:bg-neutral-950 text-black dark:text-white;
+      @apply bg-primary-50 text-black dark:bg-neutral-950 dark:text-white;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -44,7 +45,11 @@ import CommonHeaders from '@/components/astro/common-headers.astro';
       @apply appearance-none m-0;
     }
   </style>
-  <body class="prose dark:prose-invert max-w-none">
-    <slot />
+  <body>
+    <slot name="before-nav" />
+    <Navbar />
+    <main class="prose dark:prose-invert px-8 py-12 md:px-0 md:py-12 md:max-w-4xl md:mx-auto h-[300vh]">
+      <slot />
+    </main>
   </body>
 </html>

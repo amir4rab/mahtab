@@ -1,0 +1,57 @@
+---
+import Icon from "node_modules/astro-icon/lib/Icon.astro";
+import NavbarLink from "./navbar-link.astro";
+---
+
+<nav 
+  class={[
+    "bg-primary-50",
+    "dark:bg-neutral-900",
+    "md:bg-inherit",
+    "md:dark:bg-inherit",
+    "border-t",
+    "md:border-t-0",
+    "border-primary-200",
+    "dark:border-neutral-800",
+    "md:top-0",
+    "fixed",
+    "bottom-0",
+    "left-0",
+    "md:bottom-auto",
+    "text-inherit",
+    "w-full",
+    "z-50",
+    "md:sticky",
+    "md:py-3",
+    "px-8",
+    "md:px-2",
+    "pb-[env(safe-area-inset-bottom)]"
+  ].join(" ")}
+>
+  <div 
+    class={[
+      "max-w-4xl",
+      "mx-auto",
+      "grid",
+      "grid-cols-4",
+      "md:flex",
+      "md:justify-between",
+      "md:justify-center",
+      "items-center",
+      "md:gap-2",
+    ].join(" ")}
+  >
+    <NavbarLink title="Home" href="/">
+      <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-home" />
+    </NavbarLink>
+    <NavbarLink title="Projects" href="/projects">
+      <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-workspace-premium" />
+    </NavbarLink>
+    <NavbarLink title="Blog" href="/blogs">
+      <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-newspaper" />
+    </NavbarLink>
+    <NavbarLink expandable={false} title="Search">
+      <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-search" />
+    </NavbarLink>
+  </div>
+</nav>
