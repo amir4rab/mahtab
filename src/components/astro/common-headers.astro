@@ -1,9 +1,8 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 
-const title = import.meta.env.PUBLIC_TITLE;
-const description = import.meta.env.PUBLIC_DESCRIPTION;
-const URL = import.meta.env.PUBLIC_URL;
+import Data from "@/data";
+const { description, title, websiteURL } = Data;
 ---
 
 <head>
@@ -329,19 +328,19 @@ const URL = import.meta.env.PUBLIC_URL;
   <!-- Open Graph -->
   <meta property="og:title" content={title}/>
   <meta property="og:description" content={description}/>
-  <meta property="og:url" content={URL}/>
+  <meta property="og:url" content={websiteURL}/>
   <meta property="og:site_name" content={title}/>
-  <meta property="og:image" content={URL + "/banner.png"}/>
+  <meta property="og:image" content={websiteURL + "/banner.png"}/>
   <meta property="og:image:width" content="3840"/>
   <meta property="og:image:height" content="2160"/>
   <meta property="og:type" content="website"/>
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary"/>
-  <meta name="twitter:site" content={URL}/>
+  <meta name="twitter:site" content={websiteURL}/>
   <meta name="twitter:title" content={title}/>
   <meta name="twitter:description" content={description}/>
-  <meta name="twitter:image" content={URL + "/banner.png"}/>
+  <meta name="twitter:image" content={websiteURL + "/banner.png"}/>
   <meta name="twitter:image:width" content="3840"/>
   <meta name="twitter:image:height" content="2160"/>
 
