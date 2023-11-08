@@ -60,7 +60,7 @@ const config = {
         loading: "loading-keyframes steps(4) infinite",
       },
       colors: {
-        primary: colors.rose,
+        primary: colors.cyan,
       },
       screens: {
         standalone: {
