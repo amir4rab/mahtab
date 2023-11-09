@@ -1,6 +1,11 @@
 ---
 import Icon from "node_modules/astro-icon/lib/Icon.astro";
 import NavbarLink from "./navbar-link.astro";
+
+import pathnameSignal from "@/hooks/usePathname";
+
+const { pathname } = Astro.url;
+pathnameSignal.value = pathname;
 ---
 
 <nav 
@@ -55,3 +60,14 @@ import NavbarLink from "./navbar-link.astro";
     </NavbarLink>
   </div>
 </nav>
+
+<script>
+  import pathnameSignal from '@/hooks/usePathname';
+
+  const updatePathname = () => {
+    const { pathname } = window.location;
+    pathnameSignal.value = pathname;
+  }
+
+  document.addEventListener('astro:after-swap', updatePathname);
+</script>

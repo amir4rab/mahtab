@@ -1,4 +1,5 @@
 ---
+import pathnameSignal from '@/hooks/usePathname';
 import Icon from 'astro-icon';
 interface Props {
   title: string,
@@ -12,8 +13,11 @@ const { href = "", title, className = "", expandable= true } = Astro.props;
 
 <a
   data-expandable={`${expandable}`}
+  data-active={`${pathnameSignal.value === href}`}
   href={href}
   class={[
+    "data-[active=true]:text-primary-900",
+    "data-[active=true]:dark:text-primary-200",
     "md:font-light",
     "opacity-75",
     "text-xs",
@@ -34,11 +38,11 @@ const { href = "", title, className = "", expandable= true } = Astro.props;
     "py-2",
     "px-4",
     "md:data-[expandable=true]:px-[1.75rem]",
-    "md:data-[expandable=true]:hover:[--offset:-.75rem]",
+    "md:data-[expandable=true]:data-[active=false]:hover:[--offset:-.75rem]",
     "md:[--arrow-opacity:0%]",
     "md:[--arrow-offset:0%]",
-    "md:data-[expandable=true]:hover:[--arrow-opacity:100%]",
-    "md:data-[expandable=true]:hover:[--arrow-offset:100%]",
+    "md:data-[expandable=true]:data-[active=false]:hover:[--arrow-opacity:100%]",
+    "md:data-[expandable=true]:data-[active=false]:hover:[--arrow-offset:100%]",
     "[&>*]:transition-[transform,opacity]",
     "[&>*]:ease-elastic",
     "[&>*]:duration-200",
