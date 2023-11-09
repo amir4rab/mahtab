@@ -50,6 +50,10 @@ import Navbar from '@/components/astro/navbar.astro';
     input[type="number"]::-webkit-outer-spin-button {
       @apply appearance-none m-0;
     }
+
+    pre.astro-code.nord {
+      @apply !bg-neutral-900 p-8 rounded-3xl border border-neutral-700 dark:hover:border-primary-200/50 hover:border-primary-700 transition-colors duration-150 shadow-neutral-900/20 shadow-md;
+    }
   </style>
   <body>
     <slot name="before-nav" />
