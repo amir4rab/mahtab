@@ -1,16 +1,39 @@
 ---
+import Page from "@/components/astro/page.astro";
+import Icon from "astro-icon";
 
+import data from "@/data";
+import { Button, DAnchor } from "@konj-org/preact-ui";
+const { title, description, socials } = data;
+
+const profileFileName = import.meta.env.PUBLIC_PROFILE_IMAGE_FILENAME;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Page>
+	<section class="flex flex-col md:flex-row items-center gap-2 md:gap-6 mb-6">
+		<div class="rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-200/20 dark:bg-neutral-800/20  aspect-square w-[40vw] md:w-[min(10vw,180px)] [&>img]:my-0">
+			{
+				profileFileName ? <img src={profileFileName} class="aspect-square w-full h-full" /> :
+				<>
+					<img src="./ICON-DARK.svg" class="aspect-square w-full h-full hidden dark:block" />
+					<img src="./ICON-LIGHT.svg" class="aspect-square w-full h-full dark:hidden" />
+				</>
+			}
+		</div>
+		<div class="flex justify-center items-center flex-col md:block">
+			<h1 class="text-4xl md:text-6xl my-1 font-semibold">
+				{ title }
+			</h1>
+			<p class="text-sm my-0 font-light md:text-base">
+				{ description }
+			</p>
+			<div class="flex gap-2 mt-2">
+				{
+					socials.map(({ href, icon }) => (
+						<Button square className="rounded-full !p-2" target="_blank" component={DAnchor} href={href}><Icon name={icon} class="w-4 h-4" /></Button>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Page>
