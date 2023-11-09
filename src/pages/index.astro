@@ -7,6 +7,8 @@ import { Button, DAnchor } from "@konj-org/preact-ui";
 const { title, description, socials } = data;
 
 const profileFileName = import.meta.env.PUBLIC_PROFILE_IMAGE_FILENAME;
+
+const { Content: About } = (await Astro.glob('../contents/about.md'))[0]!; 
 ---
 
 <Page>
@@ -35,5 +37,9 @@ const profileFileName = import.meta.env.PUBLIC_PROFILE_IMAGE_FILENAME;
 				}
 			</div>
 		</div>
+	</section>
+	<section class="[&>p]:font-light [&>p]:text-lg md:[&>p]:text-3xl md:[&>p]:font-base">
+		<h2 class="mb-1 text-4xl md:text-lg md:opacity-80">About</h2>
+		<About />
 	</section>
 </Page>
