@@ -8,6 +8,8 @@
 
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+
+    "strictNullChecks": true
   }
 }
