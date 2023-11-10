@@ -3,12 +3,12 @@ interface Props {
   title: string;
   className?: string;
   textSection?: boolean;
+  id?: string;
 }
 
-const { title, className = "py-6", textSection = false } = Astro.props;
-
+const { title, className = "py-6", textSection = false, id } = Astro.props;
 ---
-<section class={ className + textSection ? ' [&>p]:font-light [&>p]:text-lg md:[&>p]:text-3xl md:[&>p]:font-base' : '' }>
-  <h2 class="my-1 text-4xl md:text-lg md:opacity-80">{ title }</h2>
+<section class={ className + (textSection ? ' [&>p]:font-light [&>p]:text-lg md:[&>p]:text-3xl md:[&>p]:font-base' : '') }>
+  <h2 id={id} class="my-1 text-4xl md:text-lg md:opacity-80">{ title }</h2>
   <slot />
 </section>

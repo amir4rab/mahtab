@@ -54,12 +54,23 @@ import Navbar from '@/components/astro/navbar.astro';
     pre.astro-code.nord {
       @apply !bg-neutral-900 p-8 rounded-3xl border border-neutral-700 dark:hover:border-primary-200/50 hover:border-primary-700 transition-colors duration-150 shadow-neutral-900/20 shadow-md;
     }
+
+    .display-grid {
+      display: grid;
+      grid-template-columns: [full-bleed-start] minmax(2rem,1fr) [content-start] var(--max-width,500px) [content-end] minmax(2rem,1fr) [full-bleed-end];
+    }
+    .display-grid * {
+      grid-column: content;
+    }
+    .display-grid .full-bleed {
+      grid-column: full-bleed;
+    }
   </style>
   <body>
     <slot name="before-nav" />
     <Navbar/>
     <main 
-      class="prose dark:prose-invert px-8 py-12 md:px-0 md:py-12 md:max-w-4xl md:mx-auto"
+      class="prose dark:prose-invert max-w-none display-grid [--max-width:calc(100vw_-_4rem)] md:[--max-width:theme(maxWidth.4xl)] py-12"
     >
       <slot />
     </main>
