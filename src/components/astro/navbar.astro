@@ -8,15 +8,17 @@ const { pathname } = Astro.url;
 pathnameSignal.value = pathname;
 ---
 
-<nav 
+<nav
+  transition:persist="navbar" 
   class={[
     "bg-primary-50",
     "dark:bg-neutral-900",
-    "md:bg-inherit",
-    "md:dark:bg-inherit",
+    "md:bg-white",
+    "md:dark:bg-neutral-900",
     "border-t",
     "md:border-t-0",
-    "border-primary-200",
+    "md:border-b",
+    "border-primary-100",
     "dark:border-neutral-800",
     "md:top-0",
     "fixed",
@@ -25,7 +27,7 @@ pathnameSignal.value = pathname;
     "md:bottom-auto",
     "text-inherit",
     "w-full",
-    "z-50",
+    "z-[1000]",
     "md:sticky",
     "md:py-3",
     "px-8",
@@ -40,7 +42,6 @@ pathnameSignal.value = pathname;
       "grid",
       "grid-cols-4",
       "md:flex",
-      "md:justify-between",
       "md:justify-center",
       "items-center",
       "md:gap-2",
@@ -66,8 +67,17 @@ pathnameSignal.value = pathname;
 
   const updatePathname = () => {
     const { pathname } = window.location;
+
+    // Updating the signal
     pathnameSignal.value = pathname;
+
+    // Updating anchor elements;
+    const element = document.getElementById(`navbar-link-to-${pathname}`);
+    element && element.parentNode?.childNodes.forEach((el) => (el as HTMLElement)?.setAttribute("data-active", "false"))
+    element && element.setAttribute("data-active", "true");
+
   }
 
+  updatePathname();
   document.addEventListener('astro:after-swap', updatePathname);
 </script>

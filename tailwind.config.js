@@ -11,6 +11,7 @@ const config = {
   theme: {
     transitionTimingFunction: {
       elastic: "cubic-bezier(0.68, 0, 0.32, 1.2)",
+      "elastic-1": "cubic-bezier(0.4, 0, 0.32, 1.6)",
     },
     fontFamily: {
       sans: [

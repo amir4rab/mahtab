@@ -12,13 +12,14 @@ const { href = "", title, className = "", expandable= true } = Astro.props;
 ---
 
 <a
+  id={`navbar-link-to-${href}`}
   data-expandable={`${expandable}`}
   data-active={`${pathnameSignal.value === href}`}
   href={href}
   class={[
     "data-[active=true]:text-primary-900",
     "data-[active=true]:dark:text-primary-200",
-    "md:font-light",
+    "!font-extralight",
     "opacity-75",
     "text-xs",
     "md:text-sm",
@@ -44,12 +45,12 @@ const { href = "", title, className = "", expandable= true } = Astro.props;
     "md:data-[expandable=true]:data-[active=false]:hover:[--arrow-opacity:100%]",
     "md:data-[expandable=true]:data-[active=false]:hover:[--arrow-offset:100%]",
     "[&>*]:transition-[transform,opacity]",
-    "[&>*]:ease-elastic",
+    "[&>*]:ease-elastic-1",
     "[&>*]:duration-200",
     "rounded-3xl",
     "bg-transparent",
-    "md:hover:bg-primary-400/10",
-    "md:dark:hover:bg-primary-300/10",
+    "md:hover:data-[active=false]:bg-primary-400/10",
+    "md:dark:hover:data-[active=false]:bg-primary-300/10",
     className
   ].join(" ")}
 >
