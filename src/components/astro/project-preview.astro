@@ -1,0 +1,99 @@
+---
+// Types
+import type { CollectionEntry } from 'astro:content';
+
+// Interface
+interface Props {
+  project: CollectionEntry<'projects'>;
+};
+
+// Astro Components
+import Icon from 'astro-icon';
+
+// preact Components
+import { Button, DAnchor } from '@konj-org/preact-ui';
+import ShareButton from "@/components/preact/share-button";
+
+// Data
+import data from '@/data';
+const { title: portfolioTitle } = data;
+
+const { project: { data: { title, startDate, endDate, role, banner, description, bannerRatio, repository, website }, slug } } = Astro.props;
+const projectURL = `projects/${slug}`;
+---
+
+<li class="list-none pl-0 my-4 [&>*]:px-8 md:[&>*]:px-0 md:flex md:flex-row-reverse md:gap-8 md:justify-between">
+  <!-- Banner Image -->
+  <div class="md:w-[50%] md:min-w-[50%] !px-0">
+    <img 
+      style={`aspect-ratio:${bannerRatio}`} 
+      loading="lazy" 
+      decoding="async" 
+      src={banner} 
+      class="my-0 mb-4 md:mb-0 md:rounded-3xl overflow-hidden w-full h-full" 
+    />
+  </div>
+  <!-- Main Content -->
+  <div style={`aspect-ratio:${bannerRatio}`} class="grow flex flex-col">
+    <!-- Title and Share Button -->
+    <div class="flex justify-between items-start content-start gap-4">
+      <a 
+        class={[
+          "text-3xl",
+          "md:text-5xl",
+          "!font-semibold",
+          "text-black",
+          "dark:text-white",
+          "pl-0",
+          "flex",
+          "items-start",
+          "justify-start",
+          "gap-2",
+          "[&:hover_*:last-child]:text-primary-600",
+          "dark:[&:hover_*:last-child]:text-primary-200",
+          "no-underline"
+        ].join(" ")}
+        href={projectURL}
+      >
+        {title}
+      </a>
+      <ShareButton 
+        href={projectURL} 
+        text={`View ${portfolioTitle} project, called '${title}'. `} 
+        repositoryURL={repository}
+        websiteURL={website}
+        client:idle
+      >
+        <Icon name="ic:round-more-horiz" class="w-4 h-4" />
+      </ShareButton>
+    </div>
+    <!-- Role and timeline Info -->
+    <p class="my-2 font-light text-xs md:text-sm">
+        {
+          startDate && `From ${startDate.toLocaleDateString("en-UK", { year: 'numeric', month: 'long' })} `
+        }
+        {
+          startDate && !endDate && "to present"
+        }
+        {
+          startDate && endDate &&  `to ${endDate.toLocaleDateString("en-UK", { year: 'numeric', month: 'long' })}`
+        }
+        {
+          role &&
+            ` as the ${role}`
+        }
+    </p>
+    <!-- Description -->
+    <>
+      {
+        description && <p>{description}</p>
+      }
+    </>
+    <!-- Read more Link -->
+    <div class="grow flex justify-end md:justify-start items-end">
+      <Button component={DAnchor} href={projectURL}>
+        Read more
+      </Button>
+    </div>
+  </div>
+</li>
