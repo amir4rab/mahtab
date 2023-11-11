@@ -2,6 +2,7 @@ type MahtabData = {
   title: string;
   description: string;
   websiteURL: string;
+  profileFilename?: string;
   socials: {
     name: string;
     icon: string;

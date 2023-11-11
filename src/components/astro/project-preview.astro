@@ -34,7 +34,10 @@ const projectURL = `projects/${slug}`;
     />
   </div>
   <!-- Main Content -->
-  <div style={`aspect-ratio:${bannerRatio}`} class="grow flex flex-col">
+  <div 
+    style={`--banner-ratio:${bannerRatio}`} 
+    class="grow flex flex-col md:aspect-[var(--banner-ratio)]"
+  >
     <!-- Title and Share Button -->
     <div class="flex justify-between items-start content-start gap-4">
       <a 
@@ -86,7 +89,7 @@ const projectURL = `projects/${slug}`;
     <!-- Description -->
     <>
       {
-        description && <p>{description}</p>
+        description && <p class="my-0 pb-4">{description}</p>
       }
     </>
     <!-- Read more Link -->

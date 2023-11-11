@@ -16,7 +16,7 @@ import Navbar from '@/components/astro/navbar.astro';
     }
 
     body {
-      @apply bg-primary-50 text-black dark:bg-neutral-950 dark:text-white;
+      @apply bg-neutral-50 text-black dark:bg-neutral-950 dark:text-white;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -70,7 +70,7 @@ import Navbar from '@/components/astro/navbar.astro';
     <slot name="before-nav" />
     <Navbar/>
     <main 
-      class="prose dark:prose-invert max-w-none display-grid [--max-width:calc(100vw_-_4rem)] md:[--max-width:theme(maxWidth.4xl)] py-12"
+      class="prose dark:prose-invert max-w-none display-grid [--max-width:calc(100vw_-_4rem)] md:[--max-width:theme(maxWidth.4xl)] py-12 overflow-hidden"
     >
       <slot />
     </main>
