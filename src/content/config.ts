@@ -19,6 +19,28 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const experiencesCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    company: z.string(),
+    position: z.string(),
+    description: z.string(),
+    // Assets
+    banner: z.string().optional(),
+    bannerRatio: z.string().optional(),
+    logo: z.string().optional(),
+    // Links
+    website: z.string().optional(),
+    github: z.string().optional(),
+    linkedin: z.string().optional(),
+    twitter: z.string().optional(),
+    // Dates
+    startDate: z.date().optional(),
+    endDate: z.date().optional(),
+  }),
+});
+
 export const collections = {
   projects: projectsCollection,
+  experiences: experiencesCollection,
 };
