@@ -1,0 +1,98 @@
+---
+// Types
+import type { CollectionEntry } from 'astro:content';
+
+// Utils
+import durationFormatter from '@/utils/duration-formatter';
+
+// Components
+import ShareButton from '@/components/preact/share-button';
+import Icon from 'astro-icon';
+
+// Interface
+interface Props {
+  experience: CollectionEntry<'experiences'>;
+};
+
+const { 
+  body, 
+  data: { 
+    company, 
+    description, 
+    position,
+    banner, 
+    bannerRatio, 
+    endDate, 
+    github, 
+    linkedin, 
+    logo, 
+    startDate, 
+    twitter, 
+    website 
+  }
+} = Astro.props.experience;
+---
+
+<article 
+  class={[
+    "first-of-type:mt-6",
+    "last-of-type:mb-6",
+    "my-14",
+    "[&>*:not(img)]:px-8",
+    "md:[&>*:not(img)]:px-0"
+  ].join(" ")}
+>
+  {
+    banner && 
+    <img 
+      style={`--ratio:${bannerRatio}`}
+      src={"/assets/" + banner}
+      loading="lazy" 
+      decoding="async"
+      class="w-full md:rounded-3xl mb-8 mt-0 select-none pointer-events-none"
+    />
+  }
+  <header>
+    <div class="mb-3 flex justify-between items-start">
+      <div class="flex gap-3 items-center contents-center">
+        { 
+          logo &&
+            <div class="aspect-square rounded-[calc(theme(borderRadius.sm)_+_theme(spacing.1))] bg-neutral-300 dark:bg-neutral-700 p-1 w-12 h-12">
+                <img 
+                src={"/assets/" + logo} 
+                class="aspect-square w-full h-full rounded-sm overflow-hidden my-0 select-none pointer-events-none"  
+                loading="lazy" 
+                decoding="async"
+              />
+            </div>
+        }
+        <h3 class="my-0 text-4xl">{company}</h3>
+      </div>
+      {
+        ( github || linkedin || twitter || website ) &&
+        <ShareButton
+          github={github}
+          linkedin={linkedin}
+          twitter={twitter}
+          websiteURL={website}
+          client:idle
+        >
+          <Icon name="ic:round-more-horiz" class="w-4 h-4" />
+        </ShareButton>
+      }
+    </div>
+    <p class="my-0 font-bold">
+      {position}
+    </p>
+    <p class="my-0 font-light text-xs">
+      {description}
+      {` - `}
+      { durationFormatter({ startDate, endDate }) }
+    </p>
+  </header>
+  <p class="leading-relaxed">
+    {
+      body
+    }
+  </p>
+</article>
