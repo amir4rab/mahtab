@@ -1,21 +1,51 @@
 ---
-import Page from "@/components/astro/page.astro";
+// Astro 
+import { getCollection } from "astro:content";
+
+// Astro Components
 import Icon from "astro-icon";
+import Page from "@/components/astro/page.astro";
+import Section from "@/components/astro/section.astro";
+import ProjectPreview from "@/components/astro/project-preview.astro";
+import WorkExperience from "@/components/astro/work-experience.astro";
 
-import data from "@/data";
+// Preact Components
 import { Button, DAnchor } from "@konj-org/preact-ui";
-const { title, description, socials } = data;
 
-const profileFileName = import.meta.env.PUBLIC_PROFILE_IMAGE_FILENAME;
+// Data
+import data from "@/data";
+const { title, description, socials, profileFilename } = data;
 
-const { Content: About } = (await Astro.glob('../contents/about.md'))[0]!; 
+// Fetching About file
+const { Content: About } = (await Astro.glob("../contents/about.md"))[0]!; 
+
+// Fetching projects and sorting them by the newest start date.
+const projects = (await getCollection("projects")).sort((a,b) => {
+	const aSD = a.data.startDate ? a.data.startDate : 0;
+	const bSD = b.data.startDate ? b.data.startDate : 0;
+
+	if ( aSD > bSD ) return -1;
+	if ( aSD < bSD ) return 1;
+	return 0;
+});
+
+// Fetching experiences and sorting them by the newest start date.
+const experiences = (await getCollection("experiences")).sort((a,b) => {
+	const aSD = a.data.startDate ? a.data.startDate : 0;
+	const bSD = b.data.startDate ? b.data.startDate : 0;
+
+	if ( aSD > bSD ) return -1;
+	if ( aSD < bSD ) return 1;
+	return 0;
+});
 ---
 
 <Page>
+	<!-- Hero Banner Section -->
 	<section class="flex flex-col md:flex-row items-center gap-2 md:gap-6 mb-6">
 		<div class="rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-200/20 dark:bg-neutral-800/20  aspect-square w-[40vw] md:w-[min(10vw,180px)] [&>img]:my-0">
 			{
-				profileFileName ? <img src={profileFileName} class="aspect-square w-full h-full" /> :
+				profileFilename ? <img src={profileFilename} class="aspect-square w-full h-full" /> :
 				<>
 					<img src="./ICON-DARK.svg" class="aspect-square w-full h-full hidden dark:block" />
 					<img src="./ICON-LIGHT.svg" class="aspect-square w-full h-full dark:hidden" />
@@ -32,14 +62,48 @@ const { Content: About } = (await Astro.glob('../contents/about.md'))[0]!;
 			<div class="flex gap-2 mt-2">
 				{
 					socials.map(({ href, icon }) => (
-						<Button square className="rounded-full !p-2" target="_blank" component={DAnchor} href={href}><Icon name={icon} class="w-4 h-4" /></Button>
+						<Button 
+							square 
+							className="rounded-full !p-2" 
+							variant="outline" 
+							target="_blank" 
+							component={DAnchor} 
+							href={href}
+						>
+							<Icon name={icon} class="w-4 h-4" />
+						</Button>
 					))
 				}
 			</div>
 		</div>
 	</section>
-	<section class="[&>p]:font-light [&>p]:text-lg md:[&>p]:text-3xl md:[&>p]:font-base">
-		<h2 class="mb-1 text-4xl md:text-lg md:opacity-80">About</h2>
+	<!-- About Section -->
+	<Section 
+		id="about" 
+		title="About" 
+		textSection
+	>
 		<About />
-	</section>
+	</Section>
+	<!-- Projects Preview Section -->
+	<Section 
+		id="projects" 
+		title="Projects"
+		className="full-bleed md:max-w-4xl md:w-full md:mx-auto py-6 [&_h2]:mx-8 md:[&_h2]:mx-0"
+	>
+		<ul class="px-0 py-0">
+			{
+				projects.map((project) => <ProjectPreview project={project} />)
+			}
+		</ul>
+	</Section>
+	<Section
+		id="experiences" 
+		title="Experiences"
+		className="full-bleed md:max-w-4xl md:w-full md:mx-auto py-6 [&_h2]:mx-8 md:[&_h2]:mx-0"
+	>
+		{
+			experiences.map((experience) => <WorkExperience experience={experience} />)
+		}
+	</Section>
 </Page>
