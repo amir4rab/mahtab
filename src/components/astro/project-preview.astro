@@ -14,6 +14,9 @@ import Icon from 'astro-icon';
 import { Button, DAnchor } from '@konj-org/preact-ui';
 import ShareButton from "@/components/preact/share-button";
 
+// Utils
+import durationFormatter from '@/utils/duration-formatter';
+
 // Data
 import data from '@/data';
 const { title: portfolioTitle } = data;
@@ -24,7 +27,7 @@ const projectURL = `projects/${slug}`;
 
 <li class="list-none pl-0 my-4 [&>*]:px-8 md:[&>*]:px-0 md:flex md:flex-row-reverse md:gap-8 md:justify-between">
   <!-- Banner Image -->
-  <div class="md:w-[50%] md:min-w-[50%] !px-0">
+  <div class="md:w-[50%] md:min-w-[50%] !px-0 my-0">
     <img 
       style={`aspect-ratio:${bannerRatio}`} 
       loading="lazy" 
@@ -73,13 +76,7 @@ const projectURL = `projects/${slug}`;
     <!-- Role and timeline Info -->
     <p class="my-2 font-light text-xs md:text-sm">
         {
-          startDate && `From ${startDate.toLocaleDateString("en-UK", { year: 'numeric', month: 'long' })} `
-        }
-        {
-          startDate && !endDate && "to present"
-        }
-        {
-          startDate && endDate &&  `to ${endDate.toLocaleDateString("en-UK", { year: 'numeric', month: 'long' })}`
+          durationFormatter({ startDate, endDate })
         }
         {
           role &&
