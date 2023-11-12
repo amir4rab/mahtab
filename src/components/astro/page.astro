@@ -1,6 +1,7 @@
 ---
 import CommonHeaders from '@/components/astro/common-headers.astro';
 import Navbar from '@/components/astro/navbar.astro';
+import Footer from '@/components/astro/footer.astro';
 ---
 <html lang="en" dir="ltr">
   <CommonHeaders />
@@ -16,7 +17,7 @@ import Navbar from '@/components/astro/navbar.astro';
     }
 
     body {
-      @apply bg-neutral-50 text-black dark:bg-neutral-950 dark:text-white;
+      @apply bg-white text-black dark:bg-black dark:text-white;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -57,6 +58,7 @@ import Navbar from '@/components/astro/navbar.astro';
 
     .display-grid {
       display: grid;
+      align-content: start;
       grid-template-columns: [full-bleed-start] minmax(2rem,1fr) [content-start] var(--max-width,500px) [content-end] minmax(2rem,1fr) [full-bleed-end];
     }
     .display-grid * {
@@ -70,9 +72,21 @@ import Navbar from '@/components/astro/navbar.astro';
     <slot name="before-nav" />
     <Navbar/>
     <main 
-      class="prose dark:prose-invert max-w-none display-grid [--max-width:calc(100vw_-_4rem)] md:[--max-width:theme(maxWidth.4xl)] py-12 overflow-hidden"
+      class={[
+        "prose",
+        "dark:prose-invert",
+        "max-w-none",
+        "display-grid",
+        "[--max-width:calc(100vw_-_4rem)]",
+        "md:[--max-width:theme(maxWidth.4xl)]",
+        "py-12",
+        "overflow-hidden",
+        "min-h-[100svh]",
+        "mb-auto"
+      ].join(" ")}
     >
       <slot />
     </main>
+    <Footer />
   </body>
 </html>
