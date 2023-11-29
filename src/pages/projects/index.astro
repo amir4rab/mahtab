@@ -1,0 +1,32 @@
+---
+// Astro 
+import { getCollection } from "astro:content";
+
+// Astro Components
+import Page from "@/components/astro/page.astro";
+import ProjectPreview from "@/components/astro/project-preview.astro";
+
+// Fetching projects and sorting them by the newest start date.
+const projects = (await getCollection("projects")).sort((a,b) => {
+	const aSD = a.data.startDate ? a.data.startDate : 0;
+	const bSD = b.data.startDate ? b.data.startDate : 0;
+
+	if ( aSD > bSD ) return -1;
+	if ( aSD < bSD ) return 1;
+	return 0;
+});
+---
+
+<Page>
+	<h1 
+		class="text-4xl md:text-6xl my-1 font-semibold md:mb-12"
+	>
+		Projects
+	</h1>
+	<!-- Projects Preview Section -->
+	<ul class="full-bleed md:max-w-4xl md:w-full md:mx-auto pl-0">
+		{
+			projects.map((project) => <ProjectPreview project={project} />)
+		}
+	</ul>
+</Page>
