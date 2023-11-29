@@ -17,7 +17,7 @@ import data from "@/data";
 const { title, description, socials, profileFilename } = data;
 
 // Fetching About file
-const { Content: About } = (await Astro.glob("../contents/about.md"))[0]!; 
+const { Content: About } = (await Astro.glob("../sections/about.md"))[0]!; 
 
 // Fetching projects and sorting them by the newest start date.
 const projects = (await getCollection("projects")).sort((a,b) => {
