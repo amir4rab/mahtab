@@ -2,6 +2,13 @@
 import CommonHeaders from '@/components/astro/common-headers.astro';
 import Navbar from '@/components/astro/navbar.astro';
 import Footer from '@/components/astro/footer.astro';
+
+interface Props {
+  pt?: string;
+  pb?: string;
+}
+
+const { pt, pb } = Astro.props;
 ---
 <html lang="en" dir="ltr">
   <CommonHeaders />
@@ -52,8 +59,8 @@ import Footer from '@/components/astro/footer.astro';
       @apply appearance-none m-0;
     }
 
-    pre.astro-code.nord {
-      @apply !bg-neutral-900 p-8 rounded-3xl border border-neutral-700 dark:hover:border-primary-200/50 hover:border-primary-700 transition-colors duration-150 shadow-neutral-900/20 shadow-md;
+    pre.astro-code.github-dark {
+      @apply !bg-neutral-900 px-8 py-6 rounded-2xl border border-neutral-600 shadow-neutral-900/20 shadow-md;
     }
 
     .display-grid {
@@ -84,6 +91,7 @@ import Footer from '@/components/astro/footer.astro';
         "min-h-[100svh]",
         "mb-auto"
       ].join(" ")}
+      style={pb ? `padding-bottom:${pb}` : "" + pt ?  `padding-top:${pt}`  : ""}
     >
       <slot />
     </main>

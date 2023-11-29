@@ -10,11 +10,7 @@ repository: https://github.com/konj-org/ui
 startDate: 2023-09-02
 ---
 
-# Konj UI
-
-## The Next-Gen Component Library.
-
-Collection of ReactJS and PreactJS components designed for astonishing performance, server-side rendering and full type safety. Easily edit each component to your linking with super easy acess to internal source code. Freely available with the MIT [license](https://github.com/konj-org/ui#license). The library supports AstroJS, Vite with Preact or React, and soon NextJS with server component architecture.
+Collection of ReactJS and PreactJS components designed for astonishing performance, server-side rendering and full type safety. Easily edit each component to your linking with super easy access to internal source code. Freely available with the MIT [license](https://github.com/konj-org/ui#license). The library supports AstroJS, Vite with Preact or React, and soon NextJS with server component architecture.
 
 ### Installation guide
 
