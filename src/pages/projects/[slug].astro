@@ -7,7 +7,10 @@ import Page from "@/components/astro/page.astro";
 import Icon from "astro-icon";
 
 // Konj UI components
-import { Button, DAnchor } from "@konj-org/preact-ui";
+import { buttonClassName } from "@konj-org/preact-ui";
+
+// TW merge
+import { twMerge } from "tailwind-merge";
 
 // Utils
 import durationFormatter from "@/utils/duration-formatter";
@@ -41,7 +44,12 @@ const { Content } = await render();
 <Page pt="0rem">
   {
     banner &&
-    <img class="full-bleed mb-8 w-full md:max-h-[60vh] object-cover shadow-xl shadow-neutral-950/10" style={`aspect-ratio: ${bannerRatio};`} src={banner} />
+    <img 
+      class="full-bleed mb-8 w-full md:max-h-[60vh] object-cover shadow-xl shadow-neutral-950/10"
+      style={`aspect-ratio: ${bannerRatio};`}
+      src={banner}
+      alt={title + " Banner"}
+    />
   }
   <section>
     <!-- Main Contents -->
@@ -54,29 +62,45 @@ const { Content } = await render();
       <div class="flex gap-2">
         {
           website &&
-          <Button 
-            square 
-            className="rounded-full !p-2" 
-            variant="outline" 
+          <a 
+            class={
+              twMerge(
+                buttonClassName({ 
+                  square: true,
+                  variant: "outline",
+                  compiledVariant: "theme-subtle",
+                  color: "theme",
+                }),
+                "rounded-full !p-2" 
+              )
+            }
             target="_blank" 
-            component={DAnchor} 
             href={website}
           >
+            <span class="text-[0px] opacity-0 select-none p-0 m-0 absolute">{"link to Website"}</span>
             <Icon name="ic:round-wifi-tethering" class="w-4 h-4" />
-          </Button>
+          </a>
         }
         {
           repository &&
-          <Button 
-            square 
-            className="rounded-full !p-2" 
-            variant="outline" 
+          <a 
+            class={
+              twMerge(
+                buttonClassName({ 
+                  square: true,
+                  variant: "outline",
+                  compiledVariant: "theme-subtle",
+                  color: "theme",
+                }),
+                "rounded-full !p-2" 
+              )
+            }
             target="_blank" 
-            component={DAnchor} 
             href={repository}
           >
+            <span class="text-[0px] opacity-0 select-none p-0 m-0 absolute">{"link to Repository"}</span>
             <Icon name="simple-icons:github" class="w-4 h-4" />
-          </Button>
+          </a>
         }
       </div>
     </div>

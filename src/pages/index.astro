@@ -10,7 +10,10 @@ import ProjectPreview from "@/components/astro/project-preview.astro";
 import WorkExperience from "@/components/astro/work-experience.astro";
 
 // Preact Components
-import { Button, DAnchor } from "@konj-org/preact-ui";
+import { buttonClassName } from "@konj-org/preact-ui";
+
+// TW merge
+import { twMerge } from "tailwind-merge";
 
 // Data
 import data from "@/data";
@@ -45,10 +48,10 @@ const experiences = (await getCollection("experiences")).sort((a,b) => {
 	<section class="flex flex-col md:flex-row items-center gap-2 md:gap-6 mb-6">
 		<div class="rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-200/20 dark:bg-neutral-800/20  aspect-square w-[40vw] md:w-[min(10vw,180px)] [&>img]:my-0">
 			{
-				profileFilename ? <img src={profileFilename} class="aspect-square w-full h-full" /> :
+				profileFilename ? <img alt="profile picture" src={profileFilename} class="aspect-square w-full h-full" /> :
 				<>
-					<img src="./ICON-DARK.svg" class="aspect-square w-full h-full hidden dark:block" />
-					<img src="./ICON-LIGHT.svg" class="aspect-square w-full h-full dark:hidden" />
+					<img alt="profile picture" src="/ICON-DARK.svg" class="aspect-square w-full h-full hidden dark:block" />
+					<img alt="profile picture" src="/ICON-LIGHT.svg" class="aspect-square w-full h-full dark:hidden" />
 				</>
 			}
 		</div>
@@ -61,17 +64,25 @@ const experiences = (await getCollection("experiences")).sort((a,b) => {
 			</p>
 			<div class="flex gap-2 mt-2">
 				{
-					socials.map(({ href, icon }) => (
-						<Button 
-							square 
-							className="rounded-full !p-2" 
-							variant="outline" 
+					socials.map(({ href, icon, name }) => (
+						<a 
+							class={
+								twMerge(
+									buttonClassName({ 
+										square: true,
+										variant: "outline",
+										compiledVariant: "theme-subtle",
+										color: "theme",
+									}),
+									"rounded-full !p-2" 
+								)
+							}
 							target="_blank" 
-							component={DAnchor} 
 							href={href}
 						>
+							<span class="text-[0px] opacity-0 select-none p-0 m-0 absolute">{"link to " + name}</span>
 							<Icon name={icon} class="w-4 h-4" />
-						</Button>
+						</a>
 					))
 				}
 			</div>

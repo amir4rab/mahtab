@@ -68,10 +68,10 @@ const { pt, pb } = Astro.props;
       align-content: start;
       grid-template-columns: [full-bleed-start] minmax(2rem,1fr) [content-start] var(--max-width,500px) [content-end] minmax(2rem,1fr) [full-bleed-end];
     }
-    .display-grid * {
+    .display-grid > * {
       grid-column: content;
     }
-    .display-grid .full-bleed {
+    .display-grid > .full-bleed {
       grid-column: full-bleed;
     }
   </style>
