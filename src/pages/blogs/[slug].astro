@@ -1,0 +1,112 @@
+---
+// Astro 
+import { getCollection, getEntryBySlug } from "astro:content";
+
+// Astro Components
+import Page from "@/components/astro/page.astro";
+
+// Icons
+import Icon from "astro-icon";
+
+// Konj UI components
+import { buttonClassName } from "@konj-org/preact-ui";
+
+// TW merge
+import { twMerge } from "tailwind-merge";
+
+// Static paths
+export const getStaticPaths = async () =>
+  getCollection("blogs")
+    .then(blogs => blogs.map(({ slug }) => ({ params: { slug } }))
+  );
+
+  
+// Fetching project
+const { slug } = Astro.params;
+const { data, render } = await getEntryBySlug("blogs", slug);
+const {
+  banner, 
+  bannerRatio, 
+  description,  
+  title,  
+  repository,  
+  website 
+} = data;
+
+// Parsing Contents
+const { Content } = await render();
+
+---
+<Page pt="0rem">
+  {
+    banner &&
+    <img 
+      class="full-bleed mb-8 w-full md:max-h-[60vh] object-cover shadow-xl shadow-neutral-950/10"
+      style={`aspect-ratio: ${bannerRatio};`}
+      src={"/assets/" + banner}
+      alt={title + " Banner"}
+    />
+  }
+  <section>
+    <!-- Main Contents -->
+    <div class="flex justify-between items-start content-start">
+      <!-- Title -->
+      <h1 class="mb-2 text-5xl">
+        { title }
+      </h1>
+      <!-- Social Buttons -->
+      <div class="flex gap-2">
+        {
+          website &&
+          <a 
+            class={
+              twMerge(
+                buttonClassName({ 
+                  square: true,
+                  variant: "outline",
+                  compiledVariant: "theme-subtle",
+                  color: "theme",
+                }),
+                "rounded-full !p-2" 
+              )
+            }
+            target="_blank" 
+            href={website}
+          >
+            <span class="text-[0px] opacity-0 select-none p-0 m-0 absolute">{"link to Website"}</span>
+            <Icon name="ic:round-wifi-tethering" class="w-4 h-4" />
+          </a>
+        }
+        {
+          repository &&
+          <a 
+            class={
+              twMerge(
+                buttonClassName({ 
+                  square: true,
+                  variant: "outline",
+                  compiledVariant: "theme-subtle",
+                  color: "theme",
+                }),
+                "rounded-full !p-2" 
+              )
+            }
+            target="_blank" 
+            href={repository}
+          >
+            <span class="text-[0px] opacity-0 select-none p-0 m-0 absolute">{"link to Repository"}</span>
+            <Icon name="simple-icons:github" class="w-4 h-4" />
+          </a>
+        }
+      </div>
+    </div>
+    <!-- Description -->
+    <h2 class="my-2 font-light">
+      { description }
+    </h2>
+  </section>
+  <!-- Project Contents -->
+  <section class="mt-6">
+    <Content />
+  </section>
+</Page>
