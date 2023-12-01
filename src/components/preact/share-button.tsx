@@ -83,6 +83,15 @@ const ShareButton = ({
     (expanderRef.current?.firstChild as HTMLElement | null)?.focus();
   }, [isDesktop.value]);
 
+  /** Exits the hovering mode on mobile  */
+  const onMobileClose = useCallback(() => {
+    if (isDesktop.value) return;
+
+    setTimeout(() => {
+      hovering.value = false;
+    }, 1);
+  }, [isDesktop]);
+
   return (
     <div
       ref={wrapperRef}
@@ -91,7 +100,7 @@ const ShareButton = ({
       onPointerLeave={onPointer.bind(null, false)}
       // States
       data-visible={!hovering.value}
-      // ClassNames
+      // Class Names
       className={[
         "relative",
         "cursor-pointer",
@@ -111,6 +120,7 @@ const ShareButton = ({
     >
       {/* Wraps the children by a button component */}
       <button
+        aria-label="expander button"
         onClick={onOpenByClick}
         className={[
           "p-2",
@@ -126,8 +136,8 @@ const ShareButton = ({
       <div
         ref={expanderRef}
         // Exiting the expanded state on blur
-        onBlur={() => !isDesktop.value && (hovering.value = false)}
-        onBlurCapture={() => !isDesktop.value && (hovering.value = false)}
+        onBlur={onMobileClose}
+        onBlurCapture={onMobileClose}
         // States
         data-visible={hovering.value}
         data-expand-on={"right"}
