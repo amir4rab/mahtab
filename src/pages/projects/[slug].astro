@@ -1,6 +1,6 @@
 ---
 // Astro 
-import { getCollection, getEntryBySlug } from "astro:content";
+import { getEntryBySlug } from "astro:content";
 
 // Astro Components
 import Page from "@/components/astro/page.astro";
@@ -14,12 +14,12 @@ import { twMerge } from "tailwind-merge";
 
 // Utils
 import durationFormatter from "@/utils/duration-formatter";
+import getProjects from "@/utils/getProjects";
 
 // Static paths
 export const getStaticPaths = async () =>
-  getCollection("projects")
-    .then(projects => projects.map(({ slug }) => ({ params: { slug } }))
-  );
+  getProjects()
+    .then(projects => projects.map(({ slug }) => ({ params: { slug } })));
 
   
 // Fetching project
