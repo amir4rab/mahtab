@@ -5,7 +5,7 @@ import NavbarLink from "./navbar-link.astro";
 import pathnameSignal from "@/hooks/usePathname";
 
 const { pathname } = Astro.url;
-pathnameSignal.value = pathname;
+pathnameSignal.value = pathname.endsWith("/") ? pathname : pathname + "/";
 ---
 
 <nav
@@ -33,7 +33,8 @@ pathnameSignal.value = pathname;
     "pb-[env(safe-area-inset-bottom)]"
   ].join(" ")}
 >
-  <div 
+  <div
+    id="navigation-wrapper"
     class={[
       "max-w-4xl",
       "mx-auto",
@@ -48,10 +49,10 @@ pathnameSignal.value = pathname;
     <NavbarLink title="Home" href="/">
       <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-home" />
     </NavbarLink>
-    <NavbarLink title="Projects" href="/projects">
+    <NavbarLink title="Projects" href="/projects/">
       <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-workspace-premium" />
     </NavbarLink>
-    <NavbarLink title="Blog" href="/blogs/1">
+    <NavbarLink title="Blog" href="/blogs/1/">
       <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-newspaper" />
     </NavbarLink>
     <NavbarLink expandable={false} title="Search">
@@ -64,14 +65,20 @@ pathnameSignal.value = pathname;
   import pathnameSignal from '@/hooks/usePathname';
 
   const updatePathname = () => {
+    // Extracting pathname
     const { pathname } = window.location;
 
     // Updating the signal
-    pathnameSignal.value = pathname;
+    pathnameSignal.value = pathname.endsWith("/") ? pathname : pathname + "/";
 
-    // Updating anchor elements;
+    // Getting elements
     const element = document.getElementById(`navbar-link-to-${pathname}`);
-    element && element.parentNode?.childNodes.forEach((el) => (el as HTMLElement)?.setAttribute("data-active", "false"))
+    const navigationWrapper = document.getElementById("navigation-wrapper");
+
+    // Deactivating All of navigation items
+    navigationWrapper && navigationWrapper.childNodes.forEach((el) => (el as HTMLElement)?.setAttribute("data-active", "false"));
+
+    // Activating the current navigation element, if it exits
     element && element.setAttribute("data-active", "true");
 
   }
