@@ -1,5 +1,6 @@
 ---
 // You may modify or remove the following attribution if you like.
+import { version, repository } from "package.json"
 ---
 <footer
   class={[
@@ -13,31 +14,15 @@
     "pb-[calc(theme(spacing.8)_+_env(safe-area-inset-bottom)_+_var(--added-padding))]"
   ].join(" ")}
 >
-  <p class="text-center opacity-75 text-xs [&>*]:px-0">
-    <span>
-      {`Developed by `}
-    </span>
-    <a 
-      class="underline !opacity-100" 
-      href="https://github.com/amir4rab" 
+  <p class="text-center [&>*:not(a)]:opacity-75 text-xs flex gap-1 justify-center [&>*]:px-0">
+    <span>{`Powered by`}</span>
+    <a
+      href={repository.url.replace(".git", "")}
       rel="noreferrer" 
       target="_blank"
     >
-      {`Amir4rab`}
+      {`Mahtab`}
     </a>
-    <span>
-      {`, source code available on `}
-    </span>
-    <a 
-      class="underline !opacity-100" 
-      href="https://github.com/amir4rab/mahtab" 
-      rel="noreferrer" 
-      target="_blank"
-    >
-      {`Github`}
-    </a>
-    <span>
-      {`.`}
-    </span>
+    <span class="font-mono">{`v${version}`}</span>
   </p>
 </footer>
