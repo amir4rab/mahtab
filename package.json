@@ -1,7 +1,14 @@
 {
+  "private": true,
   "name": "mahtab",
   "type": "module",
   "version": "0.0.1",
+  "homepage": "https://github.com/amir4rab/mahtab",
+  "description": "A Dead Simple Personal Portfolio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amir4rab/mahtab.git"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
