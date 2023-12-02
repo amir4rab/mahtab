@@ -1,8 +1,18 @@
 ---
-import Icon from "node_modules/astro-icon/lib/Icon.astro";
-import NavbarLink from "./navbar-link.astro";
+import Icon from "astro-icon";
 
+// Utils
 import pathnameSignal from "@/hooks/usePathname";
+import getBlogs from "@/utils/getBlogs";
+import getProjects from "@/utils/getProjects";
+
+// Astro Components
+import NavbarLink from "@/components/astro/navbar-link.astro";
+
+// Preact Components
+import SearchBox from "@/components/preact/search-box";
+
+const [blogs, projects] = await Promise.all([getBlogs(), getProjects()]);
 
 const { pathname } = Astro.url;
 pathnameSignal.value = pathname.endsWith("/") ? pathname : pathname + "/";
@@ -55,10 +65,13 @@ pathnameSignal.value = pathname.endsWith("/") ? pathname : pathname + "/";
     <NavbarLink title="Blog" href="/blogs/1/">
       <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-newspaper" />
     </NavbarLink>
-    <NavbarLink expandable={false} title="Search">
+    <NavbarLink expandable={false} id="navigation-search" title="Search">
       <Icon class="w-6 h-6 md:h-5 md:y-5" name="ic:round-search" />
     </NavbarLink>
   </div>
+  <SearchBox blogs={blogs} projects={projects} client:idle>
+    <Icon className="w-4 h-4" name="ic:round-search" />
+  </SearchBox>
 </nav>
 
 <script>

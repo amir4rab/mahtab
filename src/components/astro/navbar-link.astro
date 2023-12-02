@@ -6,13 +6,14 @@ interface Props {
   href?: string,
   className?: string;
   expandable?: boolean;
+  id?: string;
 };
 
-const { href = "", title, className = "", expandable= true } = Astro.props;
+const { href = "", title, className = "", expandable= true, id } = Astro.props;
 ---
 
 <a
-  id={`navbar-link-to-${href}`}
+  id={ id ? id : `navbar-link-to-${href}` }
   data-expandable={`${expandable}`}
   data-active={`${pathnameSignal.value === href}`}
   href={href}
