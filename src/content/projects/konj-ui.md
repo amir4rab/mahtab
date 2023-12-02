@@ -3,7 +3,7 @@ title: Konj UI
 type: Component Library
 role: Front-end Developer
 description: The Next-Gen Component Library.
-banner: /assets/konj-ui-banner.jpg
+banner: konj-ui-banner.jpg
 bannerRatio: 16/9
 website: https://ui.konj.org/
 repository: https://github.com/konj-org/ui
