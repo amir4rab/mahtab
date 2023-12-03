@@ -101,7 +101,7 @@ You have to update the following files to update the key information on the webs
 
 ### Content
 
-> ![IMPORTANT]
+> [!IMPORTANT]
 > Make sure you are adding all of the required assets, inside the following directory:
 > [`./public/assets/`](./public/assets/)
 
