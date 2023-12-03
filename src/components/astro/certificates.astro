@@ -1,0 +1,72 @@
+---
+// Types
+import type { CollectionEntry } from "astro:content"
+
+// Konj UI
+import { Button, DAnchor } from "@konj-org/preact-ui";
+
+interface Props {
+  certificates: CollectionEntry<"certificates">[]
+}
+
+const { certificates } = Astro.props;
+
+/** 
+ * Checks if the certificate is expired or not.
+ * To Do:
+ *    - This function should be executed on the client!
+ */
+const isExpired = (expireDate: Date | undefined) => {
+  if ( typeof expireDate === "undefined" ) return false;
+
+  const currentDate = new Date();
+  if ( expireDate.valueOf() < currentDate.valueOf() ) return true;
+
+  return false;
+};
+---
+
+<ol class="pl-0 my-4 grid md:grid-cols-2 gap-4">
+  {
+    certificates.map(({ data: { institution, gpa, logo, website, title, date, degreeURL, expireDate } }) => (
+      <li class="list-none p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-xl shadow-neutral-900/10 relative">
+	      <!-- Main information -->
+        <div class="flex items-center gap-2 mb-2">
+          <div>
+              <h4 class="text-2xl my-0">
+                { title }
+              </h4>
+              <p class="my-0 text-sm flex gap-2">
+                <a class="!decoration-white text-inherit !font-bold decoration-clone" href={website}>{institution}</a>
+              </p>
+          </div>
+        </div>
+        { 
+          logo &&
+            <img
+              alt={institution + " Logo"} 
+              src={"/assets/" + logo} 
+              class="aspect-square rounded-full overflow-hidden my-0 select-none pointer-events-none w-6 h-6 absolute top-8 right-8"  
+              loading="lazy" 
+              decoding="async"
+            />
+        }
+	      <!-- Secondary information -->
+        <div class="flex mt-8 justify-between items-start flex-col gap-4 md:flex-row md:gap-0">
+          <p class="flex gap-1 my-0 text-sm">
+            {
+              gpa && <span>{`GPA ${gpa}`}</span>
+            }
+            <span class="first:hidden last:hidden">,</span>
+            {
+              date && <span class="my-0">{date.getFullYear()}</span>
+            }
+          </p>
+          <Button className="ml-auto" variant="filled" component={DAnchor} href={degreeURL} disabled={isExpired(expireDate)}>
+            { !isExpired(expireDate) ? "View Certificate" : "Expired"}
+          </Button>
+        </div>
+      </li>
+    ))
+  }
+</ol>
