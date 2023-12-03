@@ -1,1 +1,1 @@
-I've been designed to help developers, create an awesome looking portfolio with a few clicks. I Support [Blogs](/blogs/1), [Education History](#education-history), [Experience](#experiences), [Languages](#languages), [Projects](#projects) and [Skills](#skills).
+I've been designed to help developers, create an awesome looking portfolio with a few clicks. I Support [Blogs](/blogs/1), [Educations](#educations), [Experience](#experiences), [Certificates](#certificates), [Projects](#projects).

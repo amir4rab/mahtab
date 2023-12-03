@@ -1,19 +1,26 @@
 ---
-// Astro 
-import { getCollection } from "astro:content";
+// Icons
+import Icon from "astro-icon";
 
 // Astro Components
-import Icon from "astro-icon";
 import Page from "@/components/astro/page.astro";
 import Section from "@/components/astro/section.astro";
 import ProjectPreview from "@/components/astro/project-preview.astro";
 import WorkExperience from "@/components/astro/work-experience.astro";
+import Educations from "@/components/astro/educations.astro";
+import Certificates from "@/components/astro/certificates.astro";
 
 // Preact Components
 import { buttonClassName } from "@konj-org/preact-ui";
 
 // TW merge
 import { twMerge } from "tailwind-merge";
+
+// Utils
+import getProjects from "@/utils/getProjects";
+import getExperiences from "@/utils/getExperiences";
+import getEducations from "@/utils/getEducations";
+import getCertificates from "@/utils/getCertificates";
 
 // Data
 import data from "@/data";
@@ -22,25 +29,7 @@ const { title, description, socials, profileFilename } = data;
 // Fetching About file
 const { Content: About } = (await Astro.glob("../sections/about.md"))[0]!; 
 
-// Fetching projects and sorting them by the newest start date.
-const projects = (await getCollection("projects")).sort((a,b) => {
-	const aSD = a.data.startDate ? a.data.startDate : 0;
-	const bSD = b.data.startDate ? b.data.startDate : 0;
-
-	if ( aSD > bSD ) return -1;
-	if ( aSD < bSD ) return 1;
-	return 0;
-});
-
-// Fetching experiences and sorting them by the newest start date.
-const experiences = (await getCollection("experiences")).sort((a,b) => {
-	const aSD = a.data.startDate ? a.data.startDate : 0;
-	const bSD = b.data.startDate ? b.data.startDate : 0;
-
-	if ( aSD > bSD ) return -1;
-	if ( aSD < bSD ) return 1;
-	return 0;
-});
+const [projects, experiences, educations, certificates] = await Promise.all([getProjects(), getExperiences(), getEducations(), getCertificates()])
 ---
 
 <Page>
@@ -102,12 +91,13 @@ const experiences = (await getCollection("experiences")).sort((a,b) => {
 		title="Projects"
 		className="full-bleed md:max-w-4xl md:w-full md:mx-auto py-6 [&_h2]:mx-8 md:[&_h2]:mx-0"
 	>
-		<ul class="px-0 py-0">
+		<ul class="px-0 py-6">
 			{
 				projects.map((project) => <ProjectPreview project={project} />)
 			}
 		</ul>
 	</Section>
+	<!-- Work Experiences -->
 	<Section
 		id="experiences" 
 		title="Experiences"
@@ -116,5 +106,19 @@ const experiences = (await getCollection("experiences")).sort((a,b) => {
 		{
 			experiences.map((experience) => <WorkExperience experience={experience} />)
 		}
+	</Section>
+	<!-- Educations -->
+	<Section
+		id="educations"
+		title="Educations"
+	>
+		<Educations educations={educations} />
+	</Section>
+	<!-- Certificates -->
+	<Section
+		id="certificates"
+		title="Certificates"
+	>
+		<Certificates certificates={certificates} />
 	</Section>
 </Page>
