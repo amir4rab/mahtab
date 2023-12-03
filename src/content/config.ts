@@ -40,6 +40,41 @@ const experiencesCollection = defineCollection({
   }),
 });
 
+const educationsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    institution: z.string(),
+    degree: z.string(),
+    fieldOfStudy: z.string(),
+    description: z.string().optional(),
+    gpa: z.string().optional(),
+    // Assets
+    logo: z.string().optional(),
+    // Links
+    website: z.string().optional(),
+    // Dates
+    startDate: z.date().optional(),
+    endDate: z.date().optional(),
+  }),
+});
+
+const certificatesCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    institution: z.string(),
+    title: z.string(),
+    gpa: z.string().optional(),
+    // Assets
+    logo: z.string().optional(),
+    // Links
+    website: z.string().optional(),
+    degreeURL: z.string().optional(),
+    // Dates
+    date: z.date().optional(),
+    expireDate: z.date().optional(),
+  }),
+});
+
 const blogsCollection = defineCollection({
   type: "content",
   schema: z.object({
@@ -65,4 +100,6 @@ export const collections = {
   projects: projectsCollection,
   experiences: experiencesCollection,
   blogs: blogsCollection,
+  educations: educationsCollection,
+  certificates: certificatesCollection,
 };
