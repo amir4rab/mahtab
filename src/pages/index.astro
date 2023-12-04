@@ -35,9 +35,23 @@ const [projects, experiences, educations, certificates] = await Promise.all([get
 <Page>
 	<!-- Hero Banner Section -->
 	<section class="flex flex-col md:flex-row items-center gap-2 md:gap-6 mb-6">
-		<div class="rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-200/20 dark:bg-neutral-800/20  aspect-square w-[40vw] md:w-[min(10vw,180px)] [&>img]:my-0">
+		<div 
+			class={[
+				"rounded-full",
+				"border",
+				"border-neutral-200",
+				"dark:border-neutral-800",
+				"bg-neutral-200/20",
+				"dark:bg-neutral-800/20",
+				"aspect-square",
+				"w-[40vw]",
+				"md:w-[min(10vw,180px)]",
+				"[&>img]:my-0",
+				"overflow-hidden"
+			].join(" ")}
+		>
 			{
-				profileFilename ? <img alt="profile picture" src={profileFilename} class="aspect-square w-full h-full" /> :
+				profileFilename ? <img alt="profile picture" src={"/assets/" + profileFilename} class="aspect-square w-full h-full" /> :
 				<>
 					<img alt="profile picture" src="/ICON-DARK.svg" class="aspect-square w-full h-full hidden dark:block" />
 					<img alt="profile picture" src="/ICON-LIGHT.svg" class="aspect-square w-full h-full dark:hidden" />

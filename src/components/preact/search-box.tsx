@@ -94,6 +94,7 @@ const SearchBox = ({
 
   return (
     <AnchoredDialog
+      slim
       state={searchBoxState.value}
       setState={(v) => (searchBoxState.value = v as boolean)}
       title="Search"
@@ -112,7 +113,7 @@ const SearchBox = ({
             {children}
           </div>
         </div>
-        <ol className="gap-4 grid md:grid-cols-2 shrink-0">
+        <ol className="gap-4 grid shrink-0">
           {filteredItems.map(
             ({
               item: {

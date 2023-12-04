@@ -25,18 +25,21 @@ const { project: { data: { title, startDate, endDate, role, banner, description,
 const projectURL = `/projects/${slug}`;
 ---
 
-<li class="list-none pl-0 my-4 first:mt-0 last:mb-0 [&>*]:px-8 md:[&>*]:px-0 md:flex md:flex-row-reverse md:gap-8 md:justify-between">
+<li class="list-none pl-0 my-10 first:mt-0 last:mb-0 [&>*]:px-8 md:[&>*]:px-0 md:flex md:flex-row-reverse md:gap-8 md:justify-between">
   <!-- Banner Image -->
-  <div class="md:w-[50%] md:min-w-[50%] !px-0 my-0">
-    <img 
-      alt={title + ' banner'}
-      style={`aspect-ratio:${bannerRatio}`} 
-      loading="lazy" 
-      decoding="async" 
-      src={"/assets/" + banner} 
-      class="my-0 mb-4 md:mb-0 md:rounded-3xl overflow-hidden w-full h-full md:shadow-xl md:bg-neutral-900/10" 
-    />
-  </div>
+  {
+     banner && 
+     <div class="md:w-[50%] md:min-w-[50%] !px-0 my-0">
+       <img 
+         alt={title + ' banner'}
+         style={`aspect-ratio:${bannerRatio}`} 
+         loading="lazy" 
+         decoding="async" 
+         src={"/assets/" + banner} 
+         class="my-0 mb-4 md:mb-0 md:rounded-3xl overflow-hidden w-full h-full md:shadow-xl md:bg-neutral-900/10" 
+       />
+     </div>
+   }
   <!-- Main Content -->
   <div 
     style={`--banner-ratio:${bannerRatio}`} 

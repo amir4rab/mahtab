@@ -1,12 +1,12 @@
 {
   "title": "Mahtab",
   "description": "A Dead Simple Personal Portfolio",
-  "websiteURL": "https://mahtab.konj.org",
+  "websiteURL": "https://mahtab.amir4rab.com",
   "socials": [
     {
       "name": "Github",
       "icon": "simple-icons:github",
-      "href": "https://github.com/konj-org/ui"
+      "href": "https://github.com/konj-org"
     },
     {
       "name": "Linkedin",

@@ -45,8 +45,13 @@ const { educations } = Astro.props;
             }
             <span class="first:hidden last:hidden">,</span>
             {
-              startDate && endDate && <span class="my-0">{startDate.getFullYear() + " - " + endDate.getFullYear()}</span>
-            }
+               (startDate) && 
+                 <span class="my-0">
+                   {
+                     `${startDate.getFullYear()}${endDate? " - " + endDate.getFullYear() : " - Until Now"}`
+                   }
+                 </span>
+             }
           </p>
           {
             description && <p class="text-sm my-3 font-light leading-relaxed">{description}</p>

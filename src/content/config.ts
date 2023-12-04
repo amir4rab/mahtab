@@ -8,8 +8,8 @@ const projectsCollection = defineCollection({
     role: z.string(),
     description: z.string(),
     // Assets
-    banner: z.string(),
-    bannerRatio: z.string(),
+    banner: z.string().optional(),
+    bannerRatio: z.string().optional(),
     // Links
     website: z.string().optional(),
     repository: z.string().optional(),
