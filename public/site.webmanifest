@@ -1,0 +1,31 @@
+{
+  "name": "Mahtab",
+  "description": "A Dead Simple Personal Portfolio",
+  "lang": "en",
+  "dir": "ltr",
+  "orientation": "portrait",
+  "short_name": "Mahtab",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "icons/icon-512x512.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    },
+    {
+      "src": "icons/icon-1024x1024.jpg",
+      "type": "image/jpeg",
+      "sizes": "1024x1024"
+    },
+    {
+      "src": "/icons/512-maskable.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}
