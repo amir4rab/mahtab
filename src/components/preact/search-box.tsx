@@ -77,7 +77,8 @@ const SearchBox = ({
   );
 
   // Opens the search box
-  const openSearchBox = useCallback(() => {
+  const openSearchBox = useCallback((e: Event) => {
+    e.preventDefault();
     searchBoxState.value = true;
   }, []);
 

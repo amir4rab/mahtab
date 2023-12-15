@@ -109,13 +109,14 @@ pathnameSignal.value = pathname.endsWith("/") ? pathname : pathname + "/";
     const navigationWrapper = document.getElementById("navigation-wrapper");
 
     // Deactivating All of navigation items
-    navigationWrapper && navigationWrapper.childNodes.forEach((el) => (el as HTMLElement)?.setAttribute("data-active", "false"));
+    navigationWrapper && navigationWrapper.childNodes.forEach((el) => {
+      const element = el as HTMLElement;
+      element["setAttribute"] && element.setAttribute("data-active", "false");
+    });
 
     // Activating the current navigation element, if it exits
-    element && element.setAttribute("data-active", "true");
-
+    element && element?.setAttribute("data-active", "true");
   }
-
   updatePathname();
   document.addEventListener('astro:after-swap', updatePathname);
 </script>
