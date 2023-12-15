@@ -17,7 +17,24 @@ const [blogs, projects] = await Promise.all([getBlogs(), getProjects()]);
 const { pathname } = Astro.url;
 pathnameSignal.value = pathname.endsWith("/") ? pathname : pathname + "/";
 ---
-
+<!-- Backdrop for PWA users on iphones  -->
+<div
+  class={[
+    "hidden",
+    "iphone-portrait:block",
+    "fixed",
+    "top-0",
+    "left-0",
+    "h-[env(safe-area-inset-top)]",
+    "bg-neutral-950/60",
+    "z-10",
+    "w-full",
+    "backdrop-blur-md"
+  ].join(" ")}
+/>
+<!-- Spacer for PWA users on iphones  -->
+<div class="hidden iphone-portrait:block h-[env(safe-area-inset-top)]" />
+<!-- Navbar -->
 <nav
   transition:persist="navbar" 
   class={[
