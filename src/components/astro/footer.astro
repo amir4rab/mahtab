@@ -1,6 +1,6 @@
 ---
 // You may modify or remove the following attribution if you like.
-import { version, repository } from "package.json"
+import { version, repository } from "package.json";
 ---
 <footer
   class={[
@@ -11,10 +11,21 @@ import { version, repository } from "package.json"
     "p-8",
     "[--added-padding:_4rem]",
     "md:[--added-padding:_0rem]",
-    "pb-[calc(theme(spacing.8)_+_env(safe-area-inset-bottom)_+_var(--added-padding))]"
+    "pb-[calc(theme(spacing.8)_+_env(safe-area-inset-bottom)_+_var(--added-padding))]",
+    "overflow-hidden",
+    "flex",
+    "justify-center",
+    "items-center",
+    "gap-4"
   ].join(" ")}
 >
-  <p class="text-center [&>*:not(a)]:opacity-75 text-xs flex gap-1 justify-center [&>*]:px-0">
+  <div
+    style="box-shadow: 0 0 100vw 1.75rem var(--tw-shadow);"
+    class="w-5 h-5 overflow-hidden !opacity-100 block rounded-full [--tw-shadow:theme(colors.primary.300)]">
+    <img alt="profile picture" src="/ICON-DARK.svg" class="aspect-square w-full h-full hidden dark:block" />
+    <img alt="profile picture" src="/ICON-LIGHT.svg" class="aspect-square w-full h-full dark:hidden" />
+  </div>
+  <p class="text-center [&>*:not(a)]:opacity-75 text-xs flex gap-1 justify-center items-center [&>*]:px-0">
     <span>{`Powered by`}</span>
     <a
       href={repository.url.replace(".git", "")}
