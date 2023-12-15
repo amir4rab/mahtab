@@ -17,13 +17,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.1",
-    "@astrojs/mdx": "^1.1.3",
+    "@astrojs/check": "^0.3.2",
+    "@astrojs/mdx": "^2.0.1",
     "@astrojs/preact": "^3.0.1",
-    "@astrojs/tailwind": "^5.0.2",
+    "@astrojs/tailwind": "^5.0.3",
     "@konj-org/preact-ui": "^0.0.1",
     "@preact/signals": "^1.2.1",
-    "astro": "^3.5.0",
+    "astro": "^4.0.5",
     "astro-icon": "^0.8.1",
     "fuse.js": "^7.0.0",
     "preact": "^10.6.5",
